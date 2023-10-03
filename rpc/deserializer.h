@@ -10,6 +10,7 @@
 
 typedef struct read_args {
     int fd;
+    void *buff;
     size_t length;
 } read_args;
 

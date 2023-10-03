@@ -6,7 +6,11 @@
 #include <stdio.h>
 #include <unistd.h>
 #include "./infra/send.h"
+#include "./infra/receive.h"
 #include <string.h>
+
+
+#define stringize(x) #x
 
 //static struct buffer *serialize_read(struct read_args *args){
 //    struct buffer *buff = (struct buffer *)(malloc(sizeof(struct buffer)));
@@ -24,6 +28,7 @@
 //}
 
 ssize_t dfs_open(const char *path, char flags){
+    //Don't forget to check where to free
     struct buffer *buffer = malloc(sizeof(struct buffer));
     buffer->offset = 0;
     strncpy(buffer->buf+buffer->offset++, OPEN_SEQ, 1);
@@ -36,7 +41,48 @@ ssize_t dfs_open(const char *path, char flags){
     return 0;
 }
 
+ssize_t dfs_read(int fd, void *buff, size_t length) {
+    
+    struct buffer *buffer = malloc(sizeof(struct buffer));
+    buffer->offset = 0;
+    strncpy(buffer->buf+buffer->offset++, READ_SEQ, 1);
+    strncpy(buffer->buf+buffer->offset++, stringize(fd), 1);
+    strncpy(buffer->buf+buffer->offset, stringize(length), 
+	    strlen(stringize(length)));
 
+    buffer->offset += strlen(stringize(length));
+
+    buffer->buf[buffer->offset] = '\0';
+
+    block_send(buffer->buf, "127.0.0.1", 1234);
+
+    block_receive(buff, "127.0.0.1", 1234);
+
+    return 0;
+}
+
+
+ssize_t dfs_write(int fd, void *buff, size_t length) {
+    
+    struct buffer *buffer = malloc(sizeof(struct buffer));
+    buffer->offset = 0;
+    strncpy(buffer->buf+buffer->offset++, WRITE_SEQ, 1);
+    strncpy(buffer->buf+buffer->offset++, stringize(fd), 1);
+    memcpy(buffer->buf+buffer->offset, buff, length);
+    buffer->offset += length;
+    strncpy(buffer->buf+buffer->offset, stringize(length), 
+	    strlen(stringize(length)));
+
+    buffer->offset += strlen(stringize(length));
+
+    buffer->buf[buffer->offset] = '\0';
+
+    block_send(buffer->buf, "127.0.0.1", 1234);
+
+    block_receive(buff, "127.0.0.1", 1234);
+
+    return 0;
+}
 
 
 

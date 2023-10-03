@@ -27,6 +27,7 @@ int create_queue(queue_t *queue){
 static int isEmpty(queue_t *queue){
     return queue->head == sentinel;
 }
+
 int enqueue(queue_t *queue, Task *task){
     node_t *temp = malloc(sizeof(node_t));
     if(!temp)

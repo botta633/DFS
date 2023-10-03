@@ -1,5 +1,5 @@
-#ifndef __RPC_H
-#define __RPC_H
+#ifndef __RECEIVE_H
+#define __RECEIVE_H
 
 void block_receive(char *data, const char *servIP, const int portNum);
 

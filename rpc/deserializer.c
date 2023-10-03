@@ -1,4 +1,5 @@
 #include "./infra/receive.h"
+#include "./infra/send.h"
 #include "deserializer.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -46,7 +47,7 @@ int main() {
     char arr[4096];
 
     block_receive(arr, "127.0.0.1", 1234);
-
     deserialize_open(arr);
+
     return 0;
 }
