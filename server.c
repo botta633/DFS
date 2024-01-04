@@ -15,11 +15,9 @@
 
 int main(){
     
-    pthread_t listener;
-    pthread_t deserialzer;
-    pthread_t pool_mgr;
-
-
+    initialize_server();
+    
+}
 
 
 

@@ -14,27 +14,24 @@ pthread_t threads[MAX_POOL_CAPACITY];
 
 
 void *consume_func(void *args) {
+
     while(1) {
-	execute();
+        execute();
     }
     return NULL;
 }
 
 void init_pool(){
+
     //init task queue
     if(create_queue(queue) == -1)
-	exit(0);
+        exit(0);
 
     for(int i = 0; i < MAX_POOL_CAPACITY; i++)
-	pthread_create(&threads[i], NULL, consume_func, NULL);
-
+        pthread_create(&threads[i], NULL, consume_func, NULL);
 }
 
-void add_task(func thread_func, void *args){
-    Task *task = malloc(sizeof(Task));
-    task->thread_func = thread_func;
-    task->args = args;
-	
+void add_task(Task *task){
     enqueue(queue, task);
 }
 

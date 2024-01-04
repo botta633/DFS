@@ -9,17 +9,11 @@
 #define MAX_POOL_CAPACITY 10
 
 
-
-
-void add_task(func thread_func, void *args);
+void add_task(Task *task);
 int execute();
 
 void *thread_func(void *args);
 void init_pool();
-
-
-
-
 
 
 

@@ -3,23 +3,19 @@
 #include <pthread.h>
 #include <sys/_pthread/_pthread_cond_t.h>
 #include <sys/_pthread/_pthread_mutex_t.h>
-
-typedef void (*func)(void *);
-
-typedef struct task {
-    func thread_func;
-    void *args;
-}Task;
+#include "task_manager.h"
 
 typedef struct Node {
     Task *task;
     struct Node *next;
 } node_t;
 
+
 typedef struct queue{
     node_t *head;
     node_t *tail;
-    pthread_mutex_t mutex;
+    pthread_mutex_t head_mutex;
+    pthread_mutex_t tail_mutex;
     pthread_cond_t cv;
 } queue_t;
 
