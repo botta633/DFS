@@ -14,10 +14,8 @@ int execute();
 
 void *thread_func(void *args);
 void init_pool();
-
-
-
-
+void add_stream(const char *arr);
+int create_task_helper();
 
 
 #endif 

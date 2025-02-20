@@ -1,12 +1,14 @@
 #include "./infra/receive.h"
 #include "./infra/send.h"
 #include "deserializer.h"
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/_endian.h>
 
 // free the memory returned from all these functions
-
+static void* (*func_mapper[15])(const char*);
 open_args *deserialize_open(const char *data){
     open_args *args = malloc(sizeof(open_args));
     int i = 1;
@@ -23,13 +25,14 @@ open_args *deserialize_open(const char *data){
 
     return args;
 
-
 }
 
 read_args *deserialize_read(const char *data){
     read_args *args = malloc(sizeof(read_args));
     int fd = data[1];
-    ssize_t length = *(ssize_t *)ntohl(data + 2);
+    uint32_t length = ntohl(*(uint32_t *)((void *)(data+2)));
+
+    printf("Came here\n");
 
     printf("fd = %d\n", fd);
     printf("length = %d\n", length);
@@ -55,22 +58,19 @@ write_args *deserialize_write(const char *data){
     printf("came here and data is %s \n", length);
     args->length = atoi(length);
     args->buff = buff;
+            return args;
+}
+
+void *deserialize(const char *data) {
+    printf("came here\n");
+    void *args = func_mapper[data[0]](data);
     return args;
 }
 
-
-
-
-
-
-
-
-int main() {
-
-    char arr[4096];
-
-    block_receive(arr, "127.0.0.1", 1234);
-    deserialize_read(arr);
-
-    return 0;
+void init_deserializer()
+{   
+    func_mapper[1] = (void *)&*deserialize_open;
+    func_mapper[2] = (void *)&deserialize_read;
+    func_mapper[3] = (void *)&deserialize_write;
 }
+

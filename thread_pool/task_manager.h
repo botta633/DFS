@@ -9,12 +9,8 @@ typedef struct task {
     char *args;
 }Task;
 
-Task *create_task(char *data);
+Task *create_task(void *args);
 
-
-void read_task(char *data);
-void write_task(char *data);
-void open_task(char *data);
 
 #endif // !__TASK_MANAGER_H
 #define __TASK_MANAGER_H

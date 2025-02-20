@@ -1,0 +1,28 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     serializer
+relocations:
+  - { offsetInCU: 0x82, offset: 0x82, size: 0x8, addend: 0x0, symName: __OSSwapInt32, symObjAddr: 0x0, symBinAddr: 0x10000327C, symSize: 0x3C }
+  - { offsetInCU: 0x118, offset: 0x118, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x618, symBinAddr: 0x100003894, symSize: 0x48 }
+  - { offsetInCU: 0x170, offset: 0x170, size: 0x8, addend: 0x0, symName: _serialize_write, symObjAddr: 0x4EC, symBinAddr: 0x100003768, symSize: 0x12C }
+  - { offsetInCU: 0x178, offset: 0x178, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x618, symBinAddr: 0x100003894, symSize: 0x48 }
+  - { offsetInCU: 0x1FE, offset: 0x1FE, size: 0x8, addend: 0x0, symName: _serialize_read, symObjAddr: 0x27C, symBinAddr: 0x1000034F8, symSize: 0x270 }
+  - { offsetInCU: 0x206, offset: 0x206, size: 0x8, addend: 0x0, symName: _serialize_write, symObjAddr: 0x4EC, symBinAddr: 0x100003768, symSize: 0x12C }
+  - { offsetInCU: 0x289, offset: 0x289, size: 0x8, addend: 0x0, symName: _convert_to_str, symObjAddr: 0x154, symBinAddr: 0x1000033D0, symSize: 0x128 }
+  - { offsetInCU: 0x291, offset: 0x291, size: 0x8, addend: 0x0, symName: _serialize_read, symObjAddr: 0x27C, symBinAddr: 0x1000034F8, symSize: 0x270 }
+  - { offsetInCU: 0x318, offset: 0x318, size: 0x8, addend: 0x0, symName: _serialize_open, symObjAddr: 0x3C, symBinAddr: 0x1000032B8, symSize: 0x118 }
+  - { offsetInCU: 0x320, offset: 0x320, size: 0x8, addend: 0x0, symName: _convert_to_str, symObjAddr: 0x154, symBinAddr: 0x1000033D0, symSize: 0x128 }
+  - { offsetInCU: 0x365, offset: 0x365, size: 0x8, addend: 0x0, symName: __OSSwapInt32, symObjAddr: 0x0, symBinAddr: 0x10000327C, symSize: 0x3C }
+  - { offsetInCU: 0x36D, offset: 0x36D, size: 0x8, addend: 0x0, symName: _serialize_open, symObjAddr: 0x3C, symBinAddr: 0x1000032B8, symSize: 0x118 }
+  - { offsetInCU: 0x84, offset: 0x405, size: 0x8, addend: 0x0, symName: __OSSwapInt16, symObjAddr: 0x0, symBinAddr: 0x1000038DC, symSize: 0x38 }
+  - { offsetInCU: 0x17F, offset: 0x500, size: 0x8, addend: 0x0, symName: _block_send, symObjAddr: 0x38, symBinAddr: 0x100003914, symSize: 0xEC }
+  - { offsetInCU: 0x1FA, offset: 0x57B, size: 0x8, addend: 0x0, symName: __OSSwapInt16, symObjAddr: 0x0, symBinAddr: 0x1000038DC, symSize: 0x38 }
+  - { offsetInCU: 0x202, offset: 0x583, size: 0x8, addend: 0x0, symName: _block_send, symObjAddr: 0x38, symBinAddr: 0x100003914, symSize: 0xEC }
+  - { offsetInCU: 0x87, offset: 0x61E, size: 0x8, addend: 0x0, symName: _initialize_server, symObjAddr: 0x0, symBinAddr: 0x100003A00, symSize: 0xC4 }
+  - { offsetInCU: 0x174, offset: 0x70B, size: 0x8, addend: 0x0, symName: _sockfd, symObjAddr: 0x1030, symBinAddr: 0x100008000, symSize: 0x0 }
+  - { offsetInCU: 0x18B, offset: 0x722, size: 0x8, addend: 0x0, symName: _connfd, symObjAddr: 0x1034, symBinAddr: 0x100008004, symSize: 0x0 }
+  - { offsetInCU: 0x19F, offset: 0x736, size: 0x8, addend: 0x0, symName: _cli, symObjAddr: 0x1038, symBinAddr: 0x100008008, symSize: 0x0 }
+  - { offsetInCU: 0x1BB, offset: 0x752, size: 0x8, addend: 0x0, symName: _block_receive, symObjAddr: 0xC4, symBinAddr: 0x100003AC4, symSize: 0xE0 }
+  - { offsetInCU: 0x25A, offset: 0x7F1, size: 0x8, addend: 0x0, symName: _initialize_server, symObjAddr: 0x0, symBinAddr: 0x100003A00, symSize: 0xC4 }
+  - { offsetInCU: 0x262, offset: 0x7F9, size: 0x8, addend: 0x0, symName: _block_receive, symObjAddr: 0xC4, symBinAddr: 0x100003AC4, symSize: 0xE0 }
+...

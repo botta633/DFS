@@ -2,6 +2,7 @@
 #include <stddef.h>
 #include <stdint.h>
 #include <stdlib.h>
+#include <sys/_endian.h>
 #include <sys/_types/_ssize_t.h>
 #include <sys/socket.h>
 #include <stdio.h>
@@ -9,8 +10,6 @@
 #include "./infra/send.h"
 #include "./infra/receive.h"
 #include <string.h>
-
-
 
 //static struct buffer *serialize_read(struct read_args *args){
 //    struct buffer *buff = (struct buffer *)(malloc(sizeof(struct buffer)));
@@ -70,16 +69,26 @@ ssize_t serialize_read(int fd, void *buff, size_t length) {
     buffer->offset = 0;
     char fdstr [10];
 
-    strncpy(buffer->buf+buffer->offset++, READ_SEQ, 1);
+    strncpy(buffer->buf+buffer->offset, READ_SEQ, 1);
+    buffer->offset++;
+    printf("offset is %d\n", buffer->offset);
     // limitation fd should be [0:255]
-    buffer->buf[buffer->offset++] = fd%256;
-    strncpy(buffer->buf+buffer->offset, (char *)(&length), sizeof(length)); 
-    buffer->offset += sizeof(length);
-    printf("size of length = %d\n", sizeof(length));
-    printf("came here\n");
+    buffer->buf[buffer->offset] = (char)(fd%256);
+    buffer->offset++;
+    uint32_t converted_length = htonl(length);
+    printf("converted length is %d\n", converted_length);
+    memcpy(buffer->buf+buffer->offset, (void *)&converted_length, sizeof(uint32_t));    
+    uint32_t test = ntohl(*(uint32_t *)(buffer->buf+buffer->offset));
+    buffer->offset += 4;
+    printf("testing converted_length %u\n",test);
+    printf("offset is %d\n", buffer->offset);
+
+    strncpy(buffer->buf+buffer->offset, (char *)buff, length);
+    buffer->offset += length;
+    printf("offset is %d\n", buffer->offset);
     buffer->buf[buffer->offset] = '\0';
     printf("%d\n", *(int *)(buffer->buf + 2));
-
+    printf("data is %s\n",buffer->buf);
     block_send(buffer->buf, "127.0.0.1", 1234);
     block_receive(buff, "127.0.0.1", 1234);
 
@@ -113,6 +122,7 @@ ssize_t serialize_write(int fd, void *buff, size_t length) {
 
 int main(){
     char buff[5] = "wrwq";
+    int size = 
     serialize_read(3, buff, 4);
 
 

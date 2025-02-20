@@ -7,10 +7,9 @@
 
 #define RONLY "0"
 #define RW "1"
-
-#define OPEN_SEQ '1'
-#define READ_SEQ '2'
-#define WRITE_SEQ '3'
+#define OPEN_SEQ "1"
+#define READ_SEQ "2"
+#define WRITE_SEQ "3"
 struct buffer {
     char buf[4096];
     int offset;

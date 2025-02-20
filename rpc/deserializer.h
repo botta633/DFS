@@ -30,7 +30,8 @@ read_args *deserialize_read(const char *data);
 write_args *deserialize_write(const char *data);
 open_args *deserialize_open(const char *data);
 
-
+void *deserialize(const char *data);
+void init_deserializer();
 
 
 

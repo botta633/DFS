@@ -20,7 +20,7 @@ void initialize_server() {
     struct sockaddr_in serv_addr = {
         .sin_addr.s_addr = htonl(INADDR_ANY),
         .sin_family = AF_INET,
-        .sin_port = htons(portNum),
+        .sin_port = htons(1234),
     };
 
     printf("[+] Server started!\n");
@@ -51,8 +51,8 @@ void block_receive(char *data, const char *servIP, const int portNum){
     bzero(receiveBuffer, sizeof(receiveBuffer));
 
     if(read(connfd, receiveBuffer, 4096) > 0){
-        printf("%s what is received\n", receiveBuffer);
-        memcpy(data, receiveBuffer, strlen(receiveBuffer));
+        printf("%s\n",receiveBuffer);
+        memcpy(data, receiveBuffer, 30);
     }
 }
 

@@ -24,9 +24,9 @@ void block_send(char *data, const char *destIP, const int portNum){
     printf("[+] Connected to server at address %s\n", destIP);
     printf("Data is %s\n", data);
     for(;;) {
-        write(sockfd, data, strlen(data)); 
-        bzero(data, strlen(data));
-        read(sockfd, data, strlen(data));
+        write(sockfd, data, 50); 
+        bzero(data, 100);
+        read(sockfd, data, 100);
     }
 
 }

@@ -6,7 +6,7 @@
 #include "task_manager.h"
 
 typedef struct Node {
-    Task *task;
+    void *data;
     struct Node *next;
 } node_t;
 
@@ -21,8 +21,8 @@ typedef struct queue{
 
 
 int create_queue(queue_t *queue);
-int enqueue(queue_t *queue, Task *task);
-Task *dequeue(queue_t *queue);
+int enqueue(queue_t *queue, void *task);
+void *dequeue(queue_t *queue);
 static int isEmpty(queue_t *queue);
 
 
